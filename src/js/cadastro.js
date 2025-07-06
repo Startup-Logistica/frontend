@@ -57,4 +57,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Logout
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
+  });
+
+  // Voltar para lista
+    document.getElementById("voltarBtn").addEventListener("click", () => {
+      window.location.href = "usuarios.html";
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("token");
+      window.location.href = "index.html";
+    });
 });
