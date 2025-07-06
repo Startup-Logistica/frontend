@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Usuários</title>
+  <link rel="stylesheet" href="css/usuarios.css" />
+</head>
+<body>
+  <header>
+    <h1 id="bemVindo">Bem-vindo</h1>
+    <div>
+      <button onclick="window.location.href='cadastro.html'" class="btn-login">Novo Usuário</button>
+      <button id="logoutBtn" class="btn-login" style="background: #ff4f4f; margin-left: 10px;">Sair</button>
+    </div>
+  </header>
+
+  <main style="padding: 20px">
+    <table id="tabelaUsuarios">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <!-- Modal de Edição -->
+  <div id="modal">
+    <div>
+      <h2 style="color: #00ff88; text-align: center;">Editar Usuário</h2>
+      <input type="text" id="editNome" placeholder="Nome" />
+      <input type="email" id="editEmail" placeholder="Email" />
+      <button id="salvarEdicao" class="btn-login" style="width: 100%; margin-top: 10px">Salvar</button>
+      <button onclick="fecharModal()" style="width: 100%; padding: 12px; background: gray; border: none; color: white; border-radius: 8px; margin-top: 10px">Cancelar</button>
+    </div>
+  </div>
+
+  <script src="js/usuarios.js"></script>
+</body>
+</html>
