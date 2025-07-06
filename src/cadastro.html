@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro de Usuário</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/cadastro.css" />
+
+</head>
+<body>
+  <div class="header">
+    <div id="usuarioLogado">Carregando usuário...</div>
+    <div>
+      <button class="btn-login" id="voltarBtn">← Voltar para Lista</button>
+      <button class="btn-login" id="logoutBtn">Sair</button>
+    </div>
+  </div>
+
+  <div class="main_login">
+    <div class="left-login">
+      <h1>Área de Cadastro</h1>
+    </div>
+
+    <div class="right-login">
+      <form id="registerForm" class="card-login">
+        <h1>Cadastro</h1>
+        <div class="textfield">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" placeholder="Digite o nome" required />
+        </div>
+        <div class="textfield">
+          <label for="emailCadastro">Email</label>
+          <input type="email" id="emailCadastro" placeholder="Digite o email" required />
+        </div>
+        <div class="textfield">
+          <label for="senhaCadastro">Senha</label>
+          <input type="password" id="senhaCadastro" placeholder="Digite a senha" required />
+        </div>
+        <button type="submit" class="btn-login">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
