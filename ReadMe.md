@@ -4,6 +4,30 @@ Este README explica como configurar e executar apenas a **parte frontend** do pr
 
 ---
 
+## Descrição do Projeto
+
+O frontend de StartupLogistica fornece uma interface simples e responsiva para:
+
+* Autenticação de usuários via JWT
+* Registro público de novos usuários
+* Listagem, edição e exclusão de perfis de usuários
+
+**Objetivo:** Exemplificar a construção de interfaces interativas que consomem uma API REST com autenticação JWT.
+
+---
+
+## Metodologia Utilizada
+
+Durante o desenvolvimento do frontend utilizamos o **Kanban** no GitHub Projects:
+
+1. **A Fazer**: backlog de funcionalidades e ajustes de UI
+2. **Em Progresso**: tarefas sendo implementadas
+3. **Concluído**: features finalizadas e testadas
+
+A cada alteração significativa, movemos o cartão correspondente no quadro Kanban.
+
+---
+
 ## Estrutura de Diretórios
 
 ```
@@ -11,6 +35,8 @@ Este README explica como configurar e executar apenas a **parte frontend** do pr
 ├── login.html       # Tela de login com botão “Cadastrar-se”
 ├── cadastro.html    # Tela de cadastro público de novos usuários
 ├── usuarios.html    # Listagem de usuários, edição em modal e exclusão
+└── css
+    └── styles.css   # Estilos compartilhados
 └── js
     ├── login.js     # Lógica de login e redirecionamento
     ├── cadastro.js  # Lógica de cadastro de usuários
@@ -21,77 +47,62 @@ Este README explica como configurar e executar apenas a **parte frontend** do pr
 
 ## Dependências
 
-* **Font**: Noto Sans (importada via Google Fonts)
-* **Servidor Estático**: [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) no VS Code, ou qualquer servidor estático (http-server, Python `http.server`, etc.)
+* **Fonte:** Noto Sans (Google Fonts)
+* **Servidor Estático:** Pode usar Live Server (VS Code), http-server (Node.js) ou Python `http.server`
 
 ---
 
-## Instruções de Execução
+## Instruções para Execução
 
 1. **Clone ou copie** apenas a pasta `public` do repositório para sua máquina.
 2. Abra um terminal na pasta raiz do frontend.
 3. Inicie um servidor estático:
 
-   * **Live Server (VS Code)**: Botão direito em qualquer `.html` → **Open with Live Server**
-   * **http-server (Node.js)**:
+   * **Live Server (VS Code):** botão direito em qualquer `.html` → **Open with Live Server**
+   * **http-server (Node.js):**
 
      ```bash
      npm install -g http-server
      http-server . -c-1
      ```
-   * **Python 3**:
+   * **Python 3:**
 
      ```bash
      python3 -m http.server 5500
      ```
 4. Acesse no navegador:
 
-   * `http://127.0.0.1:5500/login.html`
-     → Tela de login
-   * `http://127.0.0.1:5500/cadastro.html`
-     → Tela de cadastro público
-   * Após login bem-sucedido, você será redirecionado para `usuarios.html`
-     → Listagem de usuários
+   * `http://127.0.0.1:5500/login.html` → tela de login
+   * `http://127.0.0.1:5500/cadastro.html` → tela de cadastro
+   * Após login, será redirecionado para `usuarios.html` → listagem
 
 ---
 
 ## Funcionalidades
 
-1. **Login** (`login.html`):
+1. **Login** (`login.html`)
 
-   * Captura email e senha, faz `POST /api/v1/login`.
-   * Armazena token JWT em `localStorage` e redireciona para `usuarios.html`.
-   * Botão **Cadastrar-se** leva para `cadastro.html`.
+   * Envia `POST /api/v1/login`, armazena token e redireciona para listagem
+   * Botão **Cadastrar-se** leva para cadastro
 
-2. **Cadastro** (`cadastro.html`):
+2. **Cadastro** (`cadastro.html`)
 
-   * Formulário público para criar novos usuários (`POST /api/v1/users`).
-   * Após sucesso, redireciona para login.
-   * Botão **Voltar** leva para a lista de usuários (se logado).
+   * Envia `POST /api/v1/users` sem necessidade de token
+   * Após sucesso, redireciona para login
 
-3. **Listagem** (`usuarios.html`):
+3. **Listagem de Usuários** (`usuarios.html`)
 
-   * Faz `GET /api/v1/users?page=0&limit=1000` para buscar todos os usuários.
-   * Exibe em tabela com Colunas: Nome, Email, Ações.
-   * Header com **Bem-vindo, {nome do usuário logado}** (via `GET /api/v1/user`).
-   * Botão **Sair** limpa token e redireciona para login.
-   * Botão **Novo Usuário** leva para cadastro.
-   * **Editar** (modal): atualiza nome/email (`PATCH /api/v1/users/{id}`).
-   * **Deletar**: exclui usuário (`DELETE /api/v1/users/{id}`) com confirmação.
+   * Exibe tabela via `GET /api/v1/users?page=0&limit=1000`
+   * Header mostra “Bem-vindo, {nome}” via `GET /api/v1/user`
+   * Botões **Novo Usuário**, **Editar**, **Deletar**, **Sair**
 
 ---
 
-## Customização de Estilo
+### Customização de Estilo
 
-* **Cores**: fundo escuro (`#201b2c`), cartões e header em roxo escuro (`#2f2841`), botões verdes (`#00ff88`).
-* **Tipografia**: Noto Sans, pesos 400/700.
-* **Responsividade**: media queries para telas <950px e <600px.
+* **Cores:** fundo escuro (`#201b2c`), destaque em verde (`#00ff88`)
+* **Responsividade:** media queries para telas <950px e <600px
 
 ---
 
-## Observações
-
-* Certifique-se de que o backend esteja rodando em `http://localhost:8080/api/v1` e com CORS habilitado para `http://127.0.0.1:5500`.
-* Ajuste URLs de `fetch()` em `js/*.js` caso o endereço do backend seja diferente.
-
-Pronto! Com isso, você tem tudo para iniciar o frontend de usuário autenticado e gerenciar usuários via API.🚀
+**Observação:** Certifique-se de que o backend esteja rodando em `http://localhost:8080/api/v1` com CORS configurado para `http://127.0.0.1:5500`.
